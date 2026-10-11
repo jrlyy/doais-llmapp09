@@ -21,9 +21,52 @@ document.addEventListener('DOMContentLoaded', () => {
         classify: { label: 'Classify', icon: '\u{1F3F7}\u{FE0F}' }
     };
 
+    const demoHint = document.getElementById('demoHint');
+    const nextExampleBtn = document.getElementById('nextExampleBtn');
+
+    // Ghost demo text shown as the placeholder for new users
+    const demoExamples = [
+        "Hi, I was charged twice for my subscription this month and I'm really frustrated. Can you refund the extra payment as soon as possible?",
+        "I just upgraded to the Pro plan and the new dashboard is fantastic! The reports load so much faster now. Is there a way to export them to Excel?",
+        "Our team meeting is moved to Thursday at 3pm. Please review the Q3 sales figures beforehand and bring your questions about the new pricing model.",
+        "The app keeps crashing every time I try to upload a photo on my phone. I've already reinstalled it twice. How do I fix this?",
+        "Scientists have discovered that regular walks of just 20 minutes a day can lower stress levels and improve sleep quality, according to a new study."
+    ];
+    let demoIndex = 0;
+
+    function showDemoPlaceholder() {
+        inputText.placeholder = demoExamples[demoIndex];
+    }
+
+    function updateDemoHint() {
+        demoHint.style.display = inputText.value.length === 0 ? 'block' : 'none';
+    }
+
+    function useDemoExample() {
+        inputText.value = demoExamples[demoIndex];
+        inputText.dispatchEvent(new Event('input'));
+    }
+
+    showDemoPlaceholder();
+
+    // Tab on an empty box accepts the ghost text
+    inputText.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab' && !e.shiftKey && inputText.value.length === 0) {
+            e.preventDefault();
+            useDemoExample();
+        }
+    });
+
+    nextExampleBtn.addEventListener('click', () => {
+        demoIndex = (demoIndex + 1) % demoExamples.length;
+        showDemoPlaceholder();
+        inputText.focus();
+    });
+
     // Character count
     inputText.addEventListener('input', () => {
         charCount.textContent = `${inputText.value.length} characters`;
+        updateDemoHint();
         updateButtonStates();
     });
 
@@ -47,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     clearAllBtn.addEventListener('click', () => {
         inputText.value = '';
         charCount.textContent = '0 characters';
+        updateDemoHint();
         clearResults();
         hideError();
         updateButtonStates();

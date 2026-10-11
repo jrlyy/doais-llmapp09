@@ -76,6 +76,11 @@ class AIService:
             "Analyze the following text and classify it with appropriate labels and tags. "
             "Respond with ONLY valid JSON, no additional text or explanation.\n\n"
             f"Text: {text}\n\n"
+            "confidence must be a number from 0 to 1 that reflects how certain the "
+            "classification is. If the text is gibberish, too short to judge, or does "
+            "not clearly belong to any category, set primaryCategory to \"unclassified\" "
+            "and confidence below 0.3. Only use confidence above 0.8 when the topic is "
+            "unambiguous.\n\n"
             "Return JSON in this exact format:\n"
             '{"labels": ["label1", "label2"], "primaryCategory": "category", "confidence": 0.9}'
         )

@@ -109,6 +109,35 @@ html, body {
     color: var(--text-secondary);
 }
 
+.textarea-wrapper textarea::placeholder {
+    color: #a0aec0;
+    font-style: italic;
+}
+
+/* Demo hint */
+.demo-hint {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.demo-hint kbd {
+    display: inline-block;
+    padding: 0.05rem 0.4rem;
+    border: 1px solid var(--border-color);
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    background: var(--surface);
+    font-family: inherit;
+    font-size: 0.75rem;
+}
+
+.demo-hint .demo-next {
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+}
+
 /* Analysis Options */
 .analysis-options h3 {
     font-size: 1rem;

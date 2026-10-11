@@ -9,6 +9,7 @@
     "eval:sentiment": "npx promptfoo@latest eval -c sentiment.yaml",
     "eval:summarize": "npx promptfoo@latest eval -c summarize.yaml",
     "eval:intent": "npx promptfoo@latest eval -c intent.yaml",
-    "view": "npx promptfoo@latest view"
+    "view": "npx promptfoo@latest view",
+    "eval:hard": "npx promptfoo@latest eval -c classify-hard.yaml && npx promptfoo@latest eval -c sentiment-hard.yaml && npx promptfoo@latest eval -c summarize-hard.yaml && npx promptfoo@latest eval -c intent-hard.yaml"
   }
 }
